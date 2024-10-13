@@ -38,7 +38,7 @@ const Menu = () => {
               icon: (
                 <CustomIcon size={20} color={"var(--bg)"} name="BsUiChecks" />
               ),
-              path: navigateTo.settingManagement,
+              path: navigateTo.organizationLevelManagement,
             } as TMenu;
           case MenuTypes.RoleManager:
             return {
@@ -82,69 +82,64 @@ const Menu = () => {
               ),
               path: navigateTo.userManagement,
             } as TMenu;
-          case MenuTypes.WaterPermitManager:
+            case MenuTypes.DeveloperSupport:
             return {
-              key: "water-license-managment",
-              label: t("operationLicenseManagement"),
-              title: t("operationLicenseManagement"),
+              key: "dev-support",
+              label: t("developerSupport"),
+              title: t("developerSupport"),
               icon: (
                 <CustomIcon
                   size={20}
                   color={"var(--bg)"}
-                  name="MdOutlineInventory"
+                  name="FaCode"
                 />
               ),
-              children: [
-                {
-                  key: "surface-water",
-                  label: t("surfaceWater"),
-                  path: navigateTo.surfaceWaterLicenseManagement,
-                  icon: (
-                    <CustomIcon
-                      size={20}
-                      color={"var(--bg)"}
-                      name="MdOutlineWater"
-                    />
-                  ),
-                },
-                {
-                  key: "pond-water",
-                  label: t("pondWater"),
-                  path: navigateTo.pondWaterLicenseManagement,
-                  icon: (
-                    <CustomIcon
-                      size={20}
-                      color={"var(--bg)"}
-                      name="MdVignette"
-                    />
-                  ),
-                },
-                {
-                  key: "spring-water",
-                  label: t("springWater"),
-                  path: navigateTo.springWaterLicenseManagement,
-                  icon: (
-                    <CustomIcon
-                      size={20}
-                      color={"var(--bg)"}
-                      name="IoWaterOutline"
-                    />
-                  ),
-                },// 
-                {
-                  key: "well-water",
-                  label: t("wellWater"),
-                  path: navigateTo.wellWaterLicenseManagement,
-                  icon: (
-                    <CustomIcon
-                      size={20}
-                      color={"var(--bg)"}
-                      name="FaRegCircle"
-                    />
-                  ),
-                }
-              ],
+              path: navigateTo.userManagement,
             } as TMenu;
+          case MenuTypes.SurfaceWaterPermitManager:
+            return {
+              key: "surface-water",
+              label: t("surfaceWater"),
+              path: navigateTo.surfaceWaterLicenseManagement,
+              icon: (
+                <CustomIcon
+                  size={20}
+                  color={"var(--bg)"}
+                  name="MdOutlineWater"
+                />
+              ),
+            };
+          case MenuTypes.PondPermitManager:
+            return {
+              key: "pond-water",
+              label: t("pondWater"),
+              path: navigateTo.pondWaterLicenseManagement,
+              icon: (
+                <CustomIcon size={20} color={"var(--bg)"} name="MdVignette" />
+              ),
+            };
+          case MenuTypes.SpringPermitManager:
+            return {
+              key: "spring-water",
+              label: t("springWater"),
+              path: navigateTo.springWaterLicenseManagement,
+              icon: (
+                <CustomIcon
+                  size={20}
+                  color={"var(--bg)"}
+                  name="IoWaterOutline"
+                />
+              ),
+            };
+          case MenuTypes.WellPermitManager:
+            return {
+              key: "well-water",
+              label: t("wellWater"),
+              path: navigateTo.wellWaterLicenseManagement,
+              icon: (
+                <CustomIcon size={20} color={"var(--bg)"} name="FaRegCircle" />
+              ),
+            };
           default:
             return {
               key: m,

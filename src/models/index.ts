@@ -21,7 +21,11 @@ export enum MenuTypes {
   //[Display(Name = "مدیریت سطح سازمانی")]
   OrganizationLevelManager = "OrganizationLevelManager",
   //[Display(Name = "مدیریت مجوز بهره برداری")]
-  WaterPermitManager = "WaterPermitManager",
+  PondPermitManager = "PondPermitManager",
+  SurfaceWaterPermitManager = "SurfaceWaterPermitManager",
+  SpringPermitManager = "SpringPermitManager",
+  WellPermitManager = "WellPermitManager",
+  DeveloperSupport = "DeveloperSupport"
 }
 export type TMenu = ItemType & {
   path?: string;

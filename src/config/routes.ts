@@ -8,6 +8,7 @@ enum routes {
   userManagement ="user-management",
   settingManagement="setting-management",
   roleManagement="role-management",
+  organizationLevelManagement="organization-level-management",
   surfaceWaterLicenseManagement = "surface-water-license-management",
   pondWaterLicenseManagement = "pond-water-license-management",
   springWaterLicenseManagement = "spring-water-license-management",

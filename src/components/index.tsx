@@ -25,6 +25,7 @@ const Panel = lazy(() => import("./panel"));
 const Dashboard = lazy(() => import("./panel/dashboard"));
 const UserManagement = lazy(() => import("./panel/userManamgement"));
 const RoleManagement = lazy(() => import("./panel/roleManagement"));
+const OrganizationLevelManagement = lazy(() => import("./panel/organizationLevelManagement"));
 const SurfaceWater = lazy(() => import("./panel/waterPermit/surfaceWater"));
 const SpringWater = lazy(() => import("./panel/waterPermit/springWater"));
 const PondWater = lazy(() => import("./panel/waterPermit/pondWater"));
@@ -106,6 +107,10 @@ function App() {
                 <Route
                   path={routes.roleManagement}
                   element={<RoleManagement />}
+                />
+                                <Route
+                  path={routes.organizationLevelManagement}
+                  element={<OrganizationLevelManagement />}
                 />
                 <Route
                   path={routes.surfaceWaterLicenseManagement}
