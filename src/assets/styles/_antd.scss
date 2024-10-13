@@ -1,0 +1,13 @@
+@media (max-width: $md) {
+  .ant-modal {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .ant-modal-content {
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+}
