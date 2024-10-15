@@ -2,6 +2,10 @@ export type TRole = {
   id: number;
   name: string;
 };
+export type TPermission = {
+  id: number;
+  name: string;
+};
 export type TUserSummary = {
   id: number;
   personnelId: number;

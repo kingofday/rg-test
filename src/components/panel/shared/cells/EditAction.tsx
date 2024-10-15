@@ -19,15 +19,13 @@ const EditAction = (props: IEditAction) => {
   });
   const onClick = () => {
     if (props.findUrl) {
-      find.get(
-        `${
-          typeof props.findUrl === "string"
-            ? props.findUrl
-            : props.findUrl(props.record)
-        }?${props.idProp}=${
-          props.record[props.idProp as keyof typeof props.record]
-        }`
-      );
+      const url =
+        typeof props.findUrl === "string"
+          ? `${props.findUrl}?${props.idProp}=${
+              props.record[props.idProp as keyof typeof props.record]
+            }`
+          : props.findUrl(props.record);
+      find.get(url);
     } else {
       props.afterSelect(props.record);
     }
@@ -38,7 +36,7 @@ const EditAction = (props: IEditAction) => {
       type={props.isMobile ? "ghost" : "primary"}
       shape={props.isMobile ? "default" : "circle"}
       icon={
-        <CustomIcon size={props.isMobile ? 20 : 10} name="IoPencilOutline" />
+        props.isMobile?undefined:<CustomIcon size={props.isMobile ? 20 : 10} name="IoPencilOutline" />
       }
       onClick={onClick}
     >

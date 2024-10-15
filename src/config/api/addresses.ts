@@ -5,6 +5,7 @@ const addreses = {
   },
   organizationLevel: {
     list: "/organizationlevel",
+    tree: "/organizationlevel/tree",
     add: "/organizationlevel",
     update: "/organizationlevel",
     find: (id: any) => `/organizationlevel/${id}`,
@@ -14,6 +15,7 @@ const addreses = {
     list: "/rolemanager/listroles",
     add: "/rolemanager/addrole",
     update: "/rolemanager/editrole",
+    permissions: "/rolemanager/permissions",
     find: (id: any) => `/rolemanager/detailrole?id=${id}`,
     delete: (id: any) => `/rolemanager/deleterole?id=${id}`,
   },

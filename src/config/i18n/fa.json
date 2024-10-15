@@ -60,8 +60,8 @@
   "organizationLevel": "سطح سازمانی",
   "userAccount": "حساب کاربری",
   "usersManagement": "مدیریت کاربران",
-  "deactiveUserAccount": "غیرفعالسازی حساب",
-  "activateUserAccount": "فعالسازی حساب",
+  "deactive": "غیرفعالسازی",
+  "activate": "فعالسازی",
   "phoneNumber": "شماره تلفن",
   "isEnabled": "فعال",
   "personnelId": "شماره پرسنلی",
@@ -220,5 +220,11 @@
   "usageAndLocation": "استفاده و محل",
   "hardBuildWithAlluvium": "آبرفت - سازنده سخت",
   "parent": "والد",
-  "developerSupport":"دولوپر"
+  "developerSupport": "دولوپر",
+  "permissions": "پرمیشن ها",
+  "enabled": "فعال",
+  "yes": "بله",
+  "no": "خیر",
+  "areYouSureToDeactive":"آیا از غیر فعالسازی مطمن هستید؟",
+  "areYouSureToActivate":"آیا از فعالسازی مطمن هستید؟"
 }

@@ -89,11 +89,20 @@ const User = () => {
             title: t("organizationLevel"),
             dataIndex: "organizationLevelName",
             key: "organizationLevelName",
-            width:200,
+            width: 200,
             render: (text) => <span>{text}</span>,
-          }
+          },
+          {
+            title: t("enabled"),
+            dataIndex: "enabled",
+            key: "enabled",
+            width: 100,
+            render: function (text, record, index) {
+              return record.isEnabled?t("yes"):t("no");
+            },
+          },
         ]}
-        scrollX={1000}
+        scrollX={1100}
         deleteAction={{
           url: (record) => addreses.userManager.delete(record.id),
         }}
@@ -103,26 +112,27 @@ const User = () => {
         }}
         customActions={[
           {
-            renderer: (text, record, updater) => {
+            renderer: (text, record, updater, isMobile) => {
               return (
                 <Button
-                  className={record.isEnabled ? "btn-warn" : "btn-success"}
-                  danger={record.isEnabled}
-                  type="primary"
-                  shape="circle"
+                  danger={isMobile?undefined:record.isEnabled}
+                  type={isMobile ? "ghost" : "primary"}
+                  shape={isMobile ? "default" : "circle"}
                   title={
                     (record.isEnabled
-                      ? t("deactiveUserAccount")
-                      : t("activateUserAccount")) ?? ""
+                      ? t("deactive")
+                      : t("activate")) ?? ""
                   }
                   icon={
-                    <CustomIcon
-                      name={
-                        !record.isEnabled
-                          ? "IoShieldCheckmarkOutline"
-                          : "IoLockClosedOutline"
-                      }
-                    />
+                    isMobile ? undefined : (
+                      <CustomIcon
+                        name={
+                          !record.isEnabled
+                            ? "IoShieldCheckmarkOutline"
+                            : "IoLockClosedOutline"
+                        }
+                      />
+                    )
                   }
                   onClick={() =>
                     selectUser({
@@ -130,7 +140,13 @@ const User = () => {
                       updater,
                     })
                   }
-                />
+                >
+                  {isMobile
+                    ? record.isEnabled
+                      ? t("deactive")
+                      : t("activate")
+                    : null}
+                </Button>
               );
             },
           },
@@ -152,8 +168,8 @@ const User = () => {
         title={t("userAccount") ?? ""}
         message={
           (userToChange?.user.isEnabled
-            ? t("deactiveUserAccount")
-            : t("activateUserAccount")) ?? ""
+            ? t("areYouSureToDeactive")
+            : t("areYouSureToActivate")) ?? ""
         }
         onCancel={() => selectUser(null)}
       />

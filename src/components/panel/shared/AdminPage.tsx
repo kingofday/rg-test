@@ -26,6 +26,7 @@ import DeleteConfirmModal from "./ConfirmModal";
 import Page from "./Page";
 import EditAction from "./cells/EditAction";
 import EntryFormModal from "./EntryFromModal";
+import DeleteAction from "./cells/DeleteAction";
 
 const { Panel } = Collapse;
 interface DeleteAction {
@@ -240,20 +241,7 @@ const AdminPage = <DataType extends Object>({
           if (!!deleteAction) {
             items.push({
               key: "delete",
-              label: (
-                <Button
-                  danger
-                  type={isMobile ? "ghost" : "primary"}
-                  shape={isMobile ? "default" : "circle"}
-                  icon={
-                    <CustomIcon
-                      size={isMobile ? 20 : 10}
-                      name="IoTrashOutline"
-                    />
-                  }
-                  onClick={() => onDelete(record)}
-                />
-              ),
+              label: <DeleteAction isMobile onClick={() => onDelete(record)} />,
             });
           }
           if (customActions?.length) {
@@ -298,13 +286,7 @@ const AdminPage = <DataType extends Object>({
               />
             )}
             {!!deleteAction && (
-              <Button
-                danger
-                type="primary"
-                shape="circle"
-                icon={<CustomIcon size={10} name="IoTrashOutline" />}
-                onClick={() => onDelete(record)}
-              />
+              <DeleteAction onClick={() => onDelete(record)} />
             )}
             {!!customActions &&
               customActions.map((x, idx) =>
