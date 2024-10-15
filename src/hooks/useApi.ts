@@ -172,7 +172,7 @@ const useApi = <T, MapedT = never>(
       toggle(true);
       try {
         let result = await apiAxios.delete<TResponse<T>>(
-          `${url}?${util.convertToQueryString(params)}`
+          `${url}${params?`?${util.convertToQueryString(params)}`:""}`
         );
         if (!result.data.succeeded) {
           let jsError = new Error(

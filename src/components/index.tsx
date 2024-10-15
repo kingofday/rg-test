@@ -17,6 +17,7 @@ import SharedContext from "context/SharedContext";
 import { MenuTypes, TSharedContext, TTheme, TUser } from "models";
 import ErrorBoundry from "./shared/ErrorBoundry";
 import useCache from "hooks/useCache";
+import Profile from "./panel/profile";
 //const Profile = lazy(() => import("./panel/profile"));
 const Splash = lazy(() => import("./Splash"));
 const Auth = lazy(() => import("./auth"));
@@ -128,7 +129,7 @@ function App() {
                   path={routes.wellWaterLicenseManagement}
                   element={<WellWater />}
                 />
-                {/* <Route path={routes.profile} element={<Profile />} /> */}
+                <Route path={routes.profile} element={<Profile />} />
               </Route>
               <Route path={routes.auth} element={<Auth />}>
                 <Route index element={<Login />} />

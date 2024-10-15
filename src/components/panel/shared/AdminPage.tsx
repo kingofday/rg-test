@@ -191,16 +191,24 @@ const AdminPage = <DataType extends Object>({
     toggleConfirmModal(record);
   };
   const handleDelete = () => {
-    if (!!recordForRemove && !!deleteAction)
-      del.delete(
+    if (!!recordForRemove && !!deleteAction) {
+      if (
+        typeof deleteAction?.url !== "string" &&
+        ~deleteAction?.url(recordForRemove).indexOf("?")
+      ) {
+        throw new Error("delete url cannot have query strings");
+      }
+      const url =
         typeof deleteAction?.url === "string"
-          ? deleteAction?.url
-          : deleteAction?.url(recordForRemove),
-        {
-          [deleteAction?.sendingProp ?? idProp]:
-            recordForRemove[(idProp ?? "id") as keyof DataType],
-        }
-      );
+          ? `${deleteAction.url}`
+          : deleteAction?.url(recordForRemove);
+      del.delete(url, {
+        [deleteAction?.sendingProp ?? idProp]:
+          recordForRemove[
+            (deleteAction?.sendingProp ?? idProp) as keyof DataType
+          ],
+      });
+    }
   };
 
   const actionsCol = useMemo((): ColumnType<DataType> | null => {

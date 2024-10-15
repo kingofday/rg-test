@@ -18,7 +18,7 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
     cachingLifeTimeInSeconds: 60,
   });
   const [, gettingLevels, levels] = useApi<TOrganizationLevelSummary, any[]>({
-    autoCallUrl: addreses.organizationLevel.list,
+    autoCallUrl: addreses.organizationLevel.tree,
     cachingLifeTimeInSeconds: 60,
     mapper: (data) => {
       const result: any[] = [];
