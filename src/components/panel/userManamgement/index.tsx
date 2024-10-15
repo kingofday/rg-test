@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import NumberCell from "../shared/cells/NumberCell";
 import EntryForm from "./EntryForm";
+import ResetPassword from "./ResetPassword";
 
 const User = () => {
   const { t } = useTranslation();
@@ -17,6 +18,9 @@ const User = () => {
     user: TUserSummary;
     updater: PagedListUpdater<TUserSummary>;
   } | null>(null);
+  const [userToResetPW, selectUserToResetPW] = useState<TUserSummary | null>(
+    null
+  );
   const [changeStatus, changing] = useApi({
     onSuccess: (_, params) => {
       userToChange?.updater(
@@ -98,7 +102,7 @@ const User = () => {
             key: "enabled",
             width: 100,
             render: function (text, record, index) {
-              return record.isEnabled?t("yes"):t("no");
+              return record.isEnabled ? t("yes") : t("no");
             },
           },
         ]}
@@ -115,13 +119,11 @@ const User = () => {
             renderer: (text, record, updater, isMobile) => {
               return (
                 <Button
-                  danger={isMobile?undefined:record.isEnabled}
+                  danger={isMobile ? undefined : record.isEnabled}
                   type={isMobile ? "ghost" : "primary"}
                   shape={isMobile ? "default" : "circle"}
                   title={
-                    (record.isEnabled
-                      ? t("deactive")
-                      : t("activate")) ?? ""
+                    (record.isEnabled ? t("deactive") : t("activate")) ?? ""
                   }
                   icon={
                     isMobile ? undefined : (
@@ -150,6 +152,25 @@ const User = () => {
               );
             },
           },
+          {
+            renderer: (text, record, updater, isMobile) => {
+              return (
+                <Button
+                  type={isMobile ? "ghost" : "primary"}
+                  shape={isMobile ? "default" : "circle"}
+                  title={t("resetPasswrod") ?? ""}
+                  icon={
+                    isMobile ? undefined : <CustomIcon name={"MdLockReset"} />
+                  }
+                  onClick={() =>
+                    selectUserToResetPW(record)
+                  }
+                >
+                  {isMobile ? t("resetPassword") : null}
+                </Button>
+              );
+            },
+          },
         ]}
         entryModalWidth={1000}
       >
@@ -173,6 +194,12 @@ const User = () => {
         }
         onCancel={() => selectUser(null)}
       />
+      {userToResetPW && (
+        <ResetPassword
+          onClose={() => selectUserToResetPW(null)}
+          data={userToResetPW}
+        />
+      )}
     </>
   );
 };

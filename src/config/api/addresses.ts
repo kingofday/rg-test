@@ -4,8 +4,8 @@ const addreses = {
     login: "/Account/Login",
   },
   organizationLevel: {
-    list: "/organizationlevel",
-    tree: "/organizationlevel/tree",
+    list: "/organizationlevel/listlevel",
+    tree: "/organizationlevel/listleveltree",
     add: "/organizationlevel",
     update: "/organizationlevel",
     find: (id: any) => `/organizationlevel/${id}`,
@@ -17,13 +17,15 @@ const addreses = {
     update: "/rolemanager/editrole",
     permissions: "/rolemanager/permissions",
     find: (id: any) => `/rolemanager/detailrole?id=${id}`,
-    delete: (id: any) => `/rolemanager/deleterole?id=${id}`,
+    delete: (id: any) => `/rolemanager/deleterole/${id}`,
   },
   userManager: {
     list: "/usermanager/listusers",
     add: "/userManager",
     update: "/userManager",
     roles: "/userManager/getRoles",
+    resetPassword: "/userManager/resetPassword",
+    changePassword: "/userManager/changePassword",
     find: (id: any) => `/userManager/${id}`,
     changeStatus: (id: number, isEnabled: boolean) =>
       `/userManager/changeStatus?id=${id}&isEnabled=${isEnabled}`,

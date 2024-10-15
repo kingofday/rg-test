@@ -225,6 +225,8 @@
   "enabled": "فعال",
   "yes": "بله",
   "no": "خیر",
-  "areYouSureToDeactive":"آیا از غیر فعالسازی مطمن هستید؟",
-  "areYouSureToActivate":"آیا از فعالسازی مطمن هستید؟"
+  "areYouSureToDeactive": "آیا از غیر فعالسازی مطمن هستید؟",
+  "areYouSureToActivate": "آیا از فعالسازی مطمن هستید؟",
+  "newPassword": "رمز جدید",
+  "resetPassword":"بازنشانی رمز عبور"
 }
