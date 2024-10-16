@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rg-test/static/css/main.039de842.css",
-    "main.js": "/rg-test/static/js/main.5f251800.js",
+    "main.js": "/rg-test/static/js/main.9a51159f.js",
     "static/js/302.21ee93b0.chunk.js": "/rg-test/static/js/302.21ee93b0.chunk.js",
     "static/js/519.016098fa.chunk.js": "/rg-test/static/js/519.016098fa.chunk.js",
     "static/js/758.278807cd.chunk.js": "/rg-test/static/js/758.278807cd.chunk.js",
@@ -54,7 +54,7 @@
     "static/media/Vazir-Regular-FD.woff2": "/rg-test/static/media/Vazir-Regular-FD.8d857a31e8e9318e37be.woff2",
     "index.html": "/rg-test/index.html",
     "main.039de842.css.map": "/rg-test/static/css/main.039de842.css.map",
-    "main.5f251800.js.map": "/rg-test/static/js/main.5f251800.js.map",
+    "main.9a51159f.js.map": "/rg-test/static/js/main.9a51159f.js.map",
     "302.21ee93b0.chunk.js.map": "/rg-test/static/js/302.21ee93b0.chunk.js.map",
     "519.016098fa.chunk.js.map": "/rg-test/static/js/519.016098fa.chunk.js.map",
     "758.278807cd.chunk.js.map": "/rg-test/static/js/758.278807cd.chunk.js.map",
@@ -84,6 +84,6 @@
   },
   "entrypoints": [
     "static/css/main.039de842.css",
-    "static/js/main.5f251800.js"
+    "static/js/main.9a51159f.js"
   ]
 }
