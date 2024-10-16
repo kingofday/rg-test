@@ -2,6 +2,7 @@
   "name": "regional-water",
   "version": "1.0.2",
   "private": true,
+  "homepage": "https://kingofday.github.io/rg-test",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
