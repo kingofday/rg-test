@@ -12,7 +12,7 @@ const SharedContext = createContext<TSharedContext>({
   user: {
     fullName: "",
     nationalCode:"",
-    phoneNumber:""
+    phoneNumber:"",
   },
   setTitle:()=>{},
   logout: () => {},

@@ -55,7 +55,7 @@ const ResetPassword = (props: IResetPassword) => {
                 },
               ]}
             >
-              <Input placeholder={t("newPassword") ?? ""} />
+              <Input.Password placeholder={t("newPassword") ?? ""} />
             </Form.Item>
           </Col>
           <Col xs={24} sm={24}>
@@ -79,7 +79,7 @@ const ResetPassword = (props: IResetPassword) => {
                 }),
               ]}
             >
-              <Input placeholder={t("repeatPassword") ?? ""} />
+              <Input.Password placeholder={t("repeatPassword") ?? ""} />
             </Form.Item>
           </Col>
         </Row>

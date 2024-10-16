@@ -228,5 +228,7 @@
   "areYouSureToDeactive": "آیا از غیر فعالسازی مطمن هستید؟",
   "areYouSureToActivate": "آیا از فعالسازی مطمن هستید؟",
   "newPassword": "رمز جدید",
-  "resetPassword":"بازنشانی رمز عبور"
+  "resetPassword":"بازنشانی رمز عبور",
+  "information":"اطلاعات",
+  "currentPassword":"رمز عبور فعلی"
 }

@@ -10,6 +10,14 @@ export type TUser = {
   fullName: string;
   nationalCode: string;
   phoneNumber: string;
+  personnelId?:string,
+  baseSalary?:string,
+  emailAddress?:string,
+  countyId?:string,
+  districtId?:string,
+  cityId?:string,
+  ruralDistrictId?:string,
+  villageId?:string,
 };
 export enum MenuTypes {
   //[Display(Name = "مدیریت تنظیمات")]
