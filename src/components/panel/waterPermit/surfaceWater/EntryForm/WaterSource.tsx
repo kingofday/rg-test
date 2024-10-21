@@ -2,30 +2,11 @@ import { Col, Divider, Form, Select } from "antd";
 import AddressInput from "components/panel/shared/AddressInputs";
 import InputNumberFormItem from "components/panel/shared/InputNumberFormItem";
 import utils from "config/utils";
-import useLocation from "hooks/useLocation";
 import { IStepContent } from "models";
 import { IrrigationNetworkTypeEnum } from "models/waterPermit";
 import { useTranslation } from "react-i18next";
 const WaterSource = ({ entryFrm, data, readOnly }: IStepContent) => {
   const { t } = useTranslation();
-  const {
-    loadingCounties,
-    counties,
-    onCountyChanged,
-    loadingDistricts,
-    districts,
-    onDistrictChanged,
-    loadingCities,
-    cities,
-    loadingRuralDistricts,
-    ruralDistricts,
-    onRuralDistrictsChanged,
-    loadingVillages,
-    villages,
-  } = useLocation({
-    entryFrm,
-    location: data?.sourceLocation,
-  });
   return (
     <>
       <Col xs={24} sm={24}>

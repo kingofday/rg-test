@@ -6,9 +6,11 @@ import CertificateInfo from "./CertificateInfo";
 import PermitOwner from "./PermitOwner";
 import WaterSource from "./WaterSource";
 import Usage from "./Usage";
-import SimilarRecords from "../SimilarRecords";
 import { IStepContent } from "models";
 import WaterAmount from "./WaterAmount";
+import { useContext, useMemo } from "react";
+import SharedContext from "context/SharedContext";
+import SimilarRecords from "../../shared/SimilarRecords";
 const EntryForm = ({
   data,
   onSuccess,
@@ -21,6 +23,19 @@ const EntryForm = ({
   readOnly?: boolean;
 }) => {
   const { t } = useTranslation();
+  const { user } = useContext(SharedContext);
+  const initialValues = useMemo(() => {
+    if (data) return data;
+    return {
+      sourceLocation: {
+        countyId: user?.countyId,
+        districtId: user?.districtId,
+        cityId: user?.cityId,
+        ruralDistrictId: user?.ruralDistrictId,
+        villageId: user?.villageId,
+      },
+    };
+  }, []);
   return (
     <StepperForm<TWellWaterSummary>
       frmName="well-water-form"
@@ -32,6 +47,7 @@ const EntryForm = ({
       updateUrl={addreses.wellWaterPermit.update}
       findUrl={addreses.wellWaterPermit.find}
       hiddenInputs={["id"]}
+      initialValues={initialValues}
       steps={[
         {
           id: "certificate-info",

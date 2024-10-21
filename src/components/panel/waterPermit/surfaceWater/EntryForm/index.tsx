@@ -5,10 +5,12 @@ import { TSurfaceWaterSummary } from "models/surfaceWater";
 import { useTranslation } from "react-i18next";
 import ExtractAndTransfer from "./ExtractAndTransfer";
 import PermitOwner from "./PermitOwner";
-import SimilarRecords from "./SimilarRecords";
 import UsageAndDeliver from "./UsageAndDeliver";
 import WaterAmount from "./WaterAmount";
 import WaterSource from "./WaterSource";
+import { useContext, useMemo } from "react";
+import SharedContext from "context/SharedContext";
+import SimilarRecords from "../../shared/SimilarRecords";
 const EntryForm = ({
   data,
   onSuccess,
@@ -21,6 +23,19 @@ const EntryForm = ({
   readOnly?: boolean;
 }) => {
   const { t } = useTranslation();
+  const { user } = useContext(SharedContext);
+  const initialValues = useMemo(() => {
+    if (data) return data;
+    return {
+      sourceLocation: {
+        countyId: user?.countyId,
+        districtId: user?.districtId,
+        cityId: user?.cityId,
+        ruralDistrictId: user?.ruralDistrictId,
+        villageId: user?.villageId,
+      },
+    };
+  }, []);
   return (
     <StepperForm<TSurfaceWaterSummary>
       frmName="surface-water-form"
@@ -32,6 +47,7 @@ const EntryForm = ({
       updateUrl={addreses.surfacewaterpermit.update}
       findUrl={addreses.surfacewaterpermit.find}
       hiddenInputs={["id"]}
+      initialValues={initialValues}
       steps={[
         {
           id: "permit-owner",

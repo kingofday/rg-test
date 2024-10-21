@@ -1,11 +1,13 @@
 import { Alert, Button, Col, Form, Input, Row, Steps } from "antd";
+import config from "config";
 import useApi from "hooks/useApi";
-import { ElementType, MouseEvent, useState } from "react";
+import { ElementType, MouseEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface IStepperForm<T> {
   frmName: string;
   data?: T;
+  initialValues?: any;
   onCancel: () => void;
   onSuccess?: (item: T, closeModal: boolean) => void;
   readOnly?: boolean;
@@ -25,6 +27,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
   const [entryFrm] = Form.useForm();
   const [step, setStep] = useState(0);
   const [errors, setError] = useState<string[]>([]);
+  const isMobile = useMemo(() => window.outerWidth < config.breakpoints.xl, []);
   const [addOrUpdate, loading] = useApi({
     onSuccess(res) {
       props.onSuccess?.(res as T, false);
@@ -72,7 +75,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
       key={props.frmName}
       form={entryFrm}
       layout="vertical"
-      initialValues={props.data as any}
+      initialValues={(props.data as any)??props.initialValues}
       onFinish={handleSubmit}
       onFinishFailed={handleFailed}
       autoComplete="off"
@@ -93,17 +96,19 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
             ))}
           </>
         )}
-        <Col xs={24} sm={24}>
-          <Steps
-            responsive={false}
-            size="small"
-            current={step}
-            items={props.steps.map((x) => ({
-              ...x,
-              id: `${x.id}-step`,
-            }))}
-          />
-        </Col>
+        {!isMobile && (
+          <Col xs={24} sm={24}>
+            <Steps
+              responsive={false}
+              size="small"
+              current={step}
+              items={props.steps.map((x) => ({
+                ...x,
+                id: `${x.id}-step`,
+              }))}
+            />
+          </Col>
+        )}
 
         {!!errors.length && (
           <Col xs={24} sm={24}>
@@ -163,6 +168,11 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
                       ) : (
                         <span></span>
                       )}
+                      {isMobile && (
+                        <span>
+                          {step + 1}/{props.steps.length}
+                        </span>
+                      )}
                       <Button
                         htmlType={"button"}
                         type="primary"
@@ -182,6 +192,11 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
                       >
                         {t("prev")}
                       </Button>
+                      {isMobile && (
+                        <span>
+                          {step + 1}/{props.steps.length}
+                        </span>
+                      )}
                       <Button
                         htmlType={props.readOnly ? "button" : "submit"}
                         type="primary"
@@ -203,6 +218,11 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
                       >
                         {t("prev")}
                       </Button>
+                      {isMobile && (
+                        <span>
+                          {step + 1}/{props.steps.length}
+                        </span>
+                      )}
                       <Button
                         htmlType={"button"}
                         type="primary"

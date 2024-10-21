@@ -1,39 +1,17 @@
-import {
-  Row
-} from "antd";
 import StepperForm from "components/panel/shared/StepperForm";
 import addreses from "config/api/addresses";
+import SharedContext from "context/SharedContext";
 import { IStepContent } from "models";
-import {
-  TSprintWaterSummary
-} from "models/springWater";
-import { ReactNode } from "react";
+import { TSprintWaterSummary } from "models/springWater";
+import { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import SimilarRecords from "../../shared/SimilarRecords";
 import ExtractAndTransfer from "./ExtractAndTransfer";
 import PermitOwner from "./PermitOwner";
-import SimilarRecords from "./SimilarRecords";
 import UsageAndLocation from "./UsageAndLocation";
 import WaterAmount from "./WaterAmount";
 import WaterSource from "./WaterSource";
-const StepContent = ({
-  active,
-  id,
-  children,
-}: {
-  active: boolean;
-  id?: string;
-  children: ReactNode;
-}) => {
-  return (
-    <div
-      className="step-content"
-      id={id}
-      style={{ display: active ? "block" : "none", position: "relative" }}
-    >
-      <Row gutter={10}>{children}</Row>
-    </div>
-  );
-};
+
 const EntryForm = ({
   data,
   onSuccess,
@@ -45,8 +23,20 @@ const EntryForm = ({
   onSuccess?: (item: TSprintWaterSummary, closeModal: boolean) => void;
   readOnly?: boolean;
 }) => {
-  
   const { t } = useTranslation();
+  const { user } = useContext(SharedContext);
+  const initialValues = useMemo(() => {
+    if (data) return data;
+    return {
+      sourceLocation: {
+        countyId: user?.countyId,
+        districtId: user?.districtId,
+        cityId: user?.cityId,
+        ruralDistrictId: user?.ruralDistrictId,
+        villageId: user?.villageId,
+      },
+    };
+  }, []);
   return (
     <StepperForm<TSprintWaterSummary>
       frmName="spring-water-form"
@@ -58,6 +48,7 @@ const EntryForm = ({
       updateUrl={addreses.springWaterPermit.update}
       findUrl={addreses.springWaterPermit.find}
       hiddenInputs={["id"]}
+      initialValues={initialValues}
       steps={[
         {
           id: "permit-owner",
@@ -87,7 +78,7 @@ const EntryForm = ({
         {
           id: "similar-records",
           title: t("similarRecords"),
-          destroyOnHide:true,
+          destroyOnHide: true,
           content: ({ entryFrm }: IStepContent) => (
             <SimilarRecords
               data={entryFrm.getFieldsValue(["waterUserProfile"])}
