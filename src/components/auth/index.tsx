@@ -6,12 +6,12 @@ import util from "config/utils";
 import SharedContext from "context/SharedContext";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
-
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import pkg from "../../../package.json";
 const Auth = () => {
   const { t } = useTranslation();
   let token = util.getStoredData(storageKeys.token);
-  const {user,defaultPath}=useContext(SharedContext);
+  const { user, defaultPath } = useContext(SharedContext);
   const location = useLocation();
   // const handleClick = () => {
   //   nav(`${inLogin ? navigateTo.signup : navigateTo.login}`);
@@ -40,20 +40,7 @@ const Auth = () => {
                 <h1 className="title">{t("appName")}</h1>
                 <p>{t("appDescription")}</p>
               </div>
-             {/*  <div className="text-center">
-                <Button size="large" className="btn-nav" onClick={handleClick}>
-                  {inLogin ? t("signup") : t("login")}
-                </Button>
-              </div>
-              <ul className="socials">
-                {socials.map((x, idx) => (
-                  <li key={idx}>
-                    <a href={x.url} target="_blank">
-                      <CustomIcon name={x.icon} size={20} />
-                    </a>
-                  </li>
-                ))}
-              </ul> */}
+              <small className="version">version {pkg.version}</small>
             </div>
           </Col>
         </Row>

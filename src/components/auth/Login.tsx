@@ -1,19 +1,19 @@
-import { useState, useRef, useContext } from "react";
-import { Alert, Button, Form, Input, Space, Typography } from "antd";
-import addreses from "config/api/addresses";
-import { navigateTo } from "config/routes";
-import useApi from "hooks/useApi";
-import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Form, Input, Space, Typography } from "antd";
 import CustomIcon from "components/shared/CustomIcon";
-import ReCAPTCHA from "react-google-recaptcha";
 import config from "config";
-import SharedContext from "context/SharedContext";
-import utils from "config/utils";
-import storageKeys from "config/storageKeys";
-import { ClaimTypes, TLoginResponse } from "models/auth";
-import { MenuTypes } from "models";
+import addreses from "config/api/addresses";
 import patterns from "config/patterns";
+import { navigateTo } from "config/routes";
+import storageKeys from "config/storageKeys";
+import utils from "config/utils";
+import SharedContext from "context/SharedContext";
+import useApi from "hooks/useApi";
+import { MenuTypes } from "models";
+import { ClaimTypes, TLoginResponse } from "models/auth";
+import { useContext, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const { Text } = Typography;
 const Login = () => {
@@ -35,6 +35,18 @@ const Login = () => {
       const phoneClaim = res?.claims.find(
         (x) => x.type === ClaimTypes.PhoneNumber
       )!;
+      const personnelId = res?.claims.find(
+        (x) => x.type === ClaimTypes.PersonnelId
+      );
+      const countyId = res?.claims.find((x) => x.type === ClaimTypes.CountyId);
+      const districtId = res?.claims.find(
+        (x) => x.type === ClaimTypes.DistrictId
+      );
+      const ruralDistrictId = res?.claims.find(
+        (x) => x.type === ClaimTypes.RuralDistrict
+      );
+      const cityId = res?.claims.find((x) => x.type === ClaimTypes.City);
+      const villageId = res?.claims.find((x) => x.type === ClaimTypes.Village);
       const menues =
         res?.claims
           .filter((x) => x.type === ClaimTypes.Permission)
@@ -43,6 +55,12 @@ const Login = () => {
         fullName: fullNameClaim.value,
         nationalCode: ncClaim.value,
         phoneNumber: phoneClaim.value,
+        personnelId: personnelId?.value,
+        countyId: countyId?.value,
+        districtId: districtId?.value,
+        ruralDistrictId: ruralDistrictId?.value,
+        cityId: cityId?.value,
+        villageId: villageId?.value,
       };
       utils.storedData(storageKeys.token, res?.accessToken);
       utils.storedData(storageKeys.menus, menues);
@@ -55,8 +73,8 @@ const Login = () => {
   });
 
   const handleSubmit = (data: any) => {
-    console.warn("TODO:// Remove line below after tests")
-    localStorage.setItem("server",data.server);
+    console.warn("TODO:// Remove line below after tests");
+    localStorage.setItem("server", data.server);
     http.post(addreses.account.login, { ...data, captcha });
   };
   const onFinishFailed = () => {};
@@ -93,19 +111,17 @@ const Login = () => {
         }
       >
         <Space direction="vertical" size={1} className="w-100">
-        <Form.Item
+          <Form.Item
             name="server"
             label={"آدرس بک اند(موقت)"}
             rules={[
               {
                 required: true,
                 message: t("required") ?? "",
-              }
+              },
             ]}
           >
-            <Input
-              className="ltr-elm"
-            />
+            <Input className="ltr-elm" />
           </Form.Item>
           <Form.Item
             name="nationalCode"

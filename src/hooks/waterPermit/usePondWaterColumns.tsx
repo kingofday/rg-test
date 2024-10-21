@@ -45,7 +45,7 @@ const usePondWaterColumns = () => {
           },
         },
         {
-          title: t("pondRefillType"),
+          title: t("refillType"),
           dataIndex: "pondRefillType",
           key: "pondRefillType",
           render(value, record, index) {
@@ -57,7 +57,7 @@ const usePondWaterColumns = () => {
           },
         },
         {
-          title: t("pondDedicateType"),
+          title: t("dedicateType"),
           dataIndex: "pondDedicateType",
           key: "pondDedicateType",
           render(value, record, index) {

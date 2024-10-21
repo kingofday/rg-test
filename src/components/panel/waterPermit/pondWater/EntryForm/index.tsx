@@ -1,20 +1,16 @@
-import {
-  Row
-} from "antd";
 import StepperForm from "components/panel/shared/StepperForm";
 import addreses from "config/api/addresses";
+import SharedContext from "context/SharedContext";
 import { IStepContent } from "models";
-import {
-  TPondWaterSummary
-} from "models/pondWater";
-import { ReactNode } from "react";
+import { TPondWaterSummary } from "models/pondWater";
+import { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import SimilarRecords from "./SimilarRecords";
 import ExtractAndTransfer from "./ExtractAndTransfer";
 import PermitOwner from "./PermitOwner";
 import UsageAndDeliver from "./UsageAndDeliver";
 import WaterAmount from "./WaterAmount";
 import WaterSource from "./WaterSource";
+import SimilarRecords from "../../shared/SimilarRecords";
 const EntryForm = ({
   data,
   onSuccess,
@@ -27,6 +23,19 @@ const EntryForm = ({
   readOnly?: boolean;
 }) => {
   const { t } = useTranslation();
+  const { user } = useContext(SharedContext);
+  const initialValues = useMemo(() => {
+    if (data) return data;
+    return {
+      sourceLocation: {
+        countyId: user?.countyId,
+        districtId: user?.districtId,
+        cityId: user?.cityId,
+        ruralDistrictId: user?.ruralDistrictId,
+        villageId: user?.villageId,
+      },
+    };
+  }, []);
   return (
     <StepperForm<TPondWaterSummary>
       frmName="pond-water-form"
@@ -38,6 +47,7 @@ const EntryForm = ({
       updateUrl={addreses.pondWaterPermit.update}
       findUrl={addreses.pondWaterPermit.find}
       hiddenInputs={["id"]}
+      initialValues={initialValues}
       steps={[
         {
           id: "permit-owner",
@@ -67,7 +77,7 @@ const EntryForm = ({
         {
           id: "similar-records",
           title: t("similarRecords"),
-          destroyOnHide:true,
+          destroyOnHide: true,
           content: ({ entryFrm }: IStepContent) => (
             <SimilarRecords
               data={entryFrm.getFieldsValue(["waterUserProfile"])}

@@ -23,12 +23,11 @@ const SurfaceWater = () => {
         EntryForm={EntryForm}
         filterUrl={addreses.surfacewaterpermit.list}
         handleSubmit={false}
-        //findUrl={(record) => addreses.surfacewaterpermit.find(record.id)}
         columns={columns}
         scrollX={1250}
-        // deleteAction={{
-        //   url: (record) => addreses.surfacewaterpermit.delete(record.id),
-        // }}
+        deleteAction={{
+          url: (record) => addreses.surfacewaterpermit.delete(record.id),
+        }}
         addUrl={addreses.surfacewaterpermit.add}
         editAction={{
           url: addreses.surfacewaterpermit.update,
@@ -44,10 +43,10 @@ const SurfaceWater = () => {
                   style={{ backgroundColor: !isMobile ? "black" : undefined }}
                   title={t("details") ?? ""}
                   icon={
-                    <CustomIcon
+                    !isMobile?<CustomIcon
                       name={"IoEyeOutline"}
                       size={isMobile ? 20 : 10}
-                    />
+                    />:undefined
                   }
                   onClick={() => toggleDetailsModal(record)}
                 >{isMobile?t("details"):null}</Button>

@@ -230,5 +230,9 @@
   "newPassword": "رمز جدید",
   "resetPassword":"بازنشانی رمز عبور",
   "information":"اطلاعات",
-  "currentPassword":"رمز عبور فعلی"
+  "currentPassword":"رمز عبور فعلی",
+  "surcafeWaterPermits":"مجوز های آب سطحی",
+  "wellWaterPermits":"مجوز های چاه",
+  "pondWaterPermits":"مجوز های برکه",
+  "springWaterPermits":"مجوز های چشمه"
 }
