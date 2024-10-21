@@ -2,6 +2,7 @@ const config = {
   apiUrl: process.env.REACT_APP_BASE_API_URL,
   token: process.env.REACT_APP_TOKEN,
   requestTimeout: 120000,
+  subdomain: process.env.REACT_APP_SUBDOMAIN,
   salt: "kingofday",
   siteKey: "6Ld235ElAAAAALNW9-mwq5FygW9I8CV5XvMMDkcp",
   //secretKey: "6Ld235ElAAAAANOniJMe3z9WCmfsWP6NQpBBLZcj",

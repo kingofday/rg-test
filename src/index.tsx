@@ -4,12 +4,13 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import App from "components";
 import "config/i18n/index";
+import config from 'config';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename={config.subdomain??undefined}>
         <App />
       </BrowserRouter>
   </React.StrictMode>
