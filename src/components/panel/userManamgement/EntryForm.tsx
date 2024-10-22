@@ -217,6 +217,12 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
           <AntForm.Item
             name="organizationLevelId"
             label={t("organizationLevel")}
+            rules={[
+              {
+                required: true,
+                message: t("required") ?? "",
+              },
+            ]}
           >
             <Select
               allowClear
@@ -230,7 +236,16 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
           </AntForm.Item>
         </Col>
         <Col xs={12} sm={8} md={6}>
-          <AntForm.Item name="roleIds" label={t("roles")}>
+          <AntForm.Item
+            name="roleIds"
+            label={t("roles")}
+            rules={[
+              {
+                required: true,
+                message: t("required") ?? "",
+              },
+            ]}
+          >
             <Select
               mode="multiple"
               loading={gettingRoles}

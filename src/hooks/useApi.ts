@@ -84,7 +84,7 @@ const useApi = <T, MapedT = never>(
         let result = await apiAxios.get<TResponse<T>>(url);
         if (!result.data.succeeded) {
           let jsError = new Error(
-            result.data.messages[0] || (t("unknownError") as string)
+            result.data.messages[0].viewMessage || (t("unknownError") as string)
           );
           errorHandler(jsError);
           options?.onFailed?.(jsError);
@@ -130,7 +130,7 @@ const useApi = <T, MapedT = never>(
         );
         if (!result.data.succeeded) {
           let jsError = new Error(
-            result.data.messages[0] || (t("unknownError") as string)
+            result.data.messages[0].viewMessage || (t("unknownError") as string)
           );
           errorHandler(jsError);
           options?.onFailed?.(jsError);
@@ -152,7 +152,7 @@ const useApi = <T, MapedT = never>(
         let result = await apiAxios.put<TResponse<T>>(url, params);
         if (!result.data.succeeded) {
           let jsError = new Error(
-            result.data.messages[0] || (t("unknownError") as string)
+            result.data.messages[0].viewMessage || (t("unknownError") as string)
           );
           errorHandler(jsError);
           options?.onFailed?.(jsError);
@@ -176,7 +176,7 @@ const useApi = <T, MapedT = never>(
         );
         if (!result.data.succeeded) {
           let jsError = new Error(
-            result.data.messages[0] || (t("unknownError") as string)
+            result.data.messages[0].viewMessage || (t("unknownError") as string)
           );
           errorHandler(jsError);
           options?.onFailed?.(jsError);

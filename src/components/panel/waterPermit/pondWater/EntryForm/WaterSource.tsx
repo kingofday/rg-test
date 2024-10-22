@@ -6,7 +6,7 @@ import { IStepContent } from "models";
 import { PondRefillTypeEnum } from "models/pondWater";
 import { IrrigationNetworkTypeEnum } from "models/waterPermit";
 import { useTranslation } from "react-i18next";
-const WaterSource = ({ entryFrm, data, readOnly }: IStepContent) => {
+const WaterSource = ({ entryFrm,initialValues, data, readOnly }: IStepContent) => {
   const { t } = useTranslation();
   return (
     <>
@@ -15,7 +15,7 @@ const WaterSource = ({ entryFrm, data, readOnly }: IStepContent) => {
       </Col>
       <AddressInput
         namePrefix="sourceLocation"
-        data={data?.sourceLocation}
+        data={data?.sourceLocation??initialValues?.sourceLocation}
         entryFrm={entryFrm}
       />
       <Col xs={12} sm={8} md={6}>
