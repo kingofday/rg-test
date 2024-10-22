@@ -28,7 +28,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
   const [step, setStep] = useState(0);
   const [errors, setError] = useState<string[]>([]);
   const isMobile = useMemo(() => window.outerWidth < config.breakpoints.xl, []);
-  const [addOrUpdate, loading] = useApi({
+  const [addOrUpdate, loading, addResponse] = useApi<any>({
     onSuccess(res) {
       props.onSuccess?.(res as T, false);
       setStep((s) => s + 1);
@@ -138,6 +138,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
                     data={props.data}
                     entryFrm={entryFrm}
                     readOnly={props.readOnly}
+                    initialValues={props.initialValues}
                   />
                 </Row>
               </div>

@@ -2,7 +2,7 @@ import type { ItemType } from "antd/es/menu/hooks/useItems";
 import { Dispatch, SetStateAction } from "react";
 export type TResponse<T> = {
   succeeded: boolean;
-  messages: string[];
+  messages: any[];
   result: T;
   exception: number;
 };
@@ -112,4 +112,5 @@ export interface IStepContent {
   entryFrm: any;
   readOnly?: boolean;
   data: any;
+  initialValues: any;
 }

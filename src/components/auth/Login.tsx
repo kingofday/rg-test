@@ -104,8 +104,8 @@ const Login = () => {
         initialValues={
           process.env.NODE_ENV === "development"
             ? {
-                nationalCode: "0987654321",
-                password: "hassan",
+                nationalCode: "2080864831",
+                password: "Admin@123",
               }
             : {}
         }

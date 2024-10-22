@@ -73,9 +73,9 @@ const useSpringWaterColumns = () => {
           render: (text) => <NumberCell value={text} />,
         },
         {
-          title: t("cropsUnderCultivationPercentage"),
-          dataIndex: "cropsUnderCultivationPercentage",
-          key: "cropsUnderCultivationPercentage",
+          title: t("areaOfAgriculturalLands"),
+          dataIndex: "areaOfAgriculturalLands",
+          key: "areaOfAgriculturalLands",
           render: (text) => <NumberCell value={text} />,
         },
       ] as ColumnsType<TSprintWaterSummary>,

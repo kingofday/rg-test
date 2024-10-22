@@ -128,8 +128,8 @@ const AdminPage = <DataType extends Object>({
     },
   });
   const [add, adding] = useApi<any>({
-    onSuccess: (newItem) => {
-      onAddSuccess(newItem);
+    onSuccess: (newItem, params) => {
+      onAddSuccess(params?{ ...params, ...newItem }:newItem);
     },
   });
   const [del, deleting] = useApi<boolean>({

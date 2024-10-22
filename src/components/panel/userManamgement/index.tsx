@@ -160,7 +160,7 @@ const User = () => {
                   shape={isMobile ? "default" : "circle"}
                   title={t("resetPasswrod") ?? ""}
                   icon={
-                    isMobile ? undefined : <CustomIcon name={"MdLockReset"} />
+                    isMobile ? undefined : <CustomIcon name={"MdOutlineLockReset"} />
                   }
                   onClick={() =>
                     selectUserToResetPW(record)
@@ -176,7 +176,7 @@ const User = () => {
       >
         <Row gutter={[20, 20]}>
           <Col xs={24} sm={12}>
-            <Form.Item name="filter" rules={[]}>
+            <Form.Item name="search" rules={[]}>
               <Input placeholder={t("search") ?? ""} />
             </Form.Item>
           </Col>
