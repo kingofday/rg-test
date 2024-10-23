@@ -56,11 +56,13 @@ const Login = () => {
         nationalCode: ncClaim.value,
         phoneNumber: phoneClaim.value,
         personnelId: personnelId?.value,
-        countyId: countyId?.value,
-        districtId: districtId?.value,
-        ruralDistrictId: ruralDistrictId?.value,
-        cityId: cityId?.value,
-        villageId: villageId?.value,
+        countyId: countyId?.value ? parseInt(countyId?.value) : undefined,
+        districtId: districtId?.value ? parseInt(districtId?.value) : undefined,
+        ruralDistrictId: ruralDistrictId?.value
+          ? parseInt(ruralDistrictId?.value)
+          : undefined,
+        cityId: cityId?.value ? parseInt(cityId?.value) : undefined,
+        villageId: villageId?.value ? parseInt(villageId?.value) : undefined,
       };
       utils.storedData(storageKeys.token, res?.accessToken);
       utils.storedData(storageKeys.menus, menues);

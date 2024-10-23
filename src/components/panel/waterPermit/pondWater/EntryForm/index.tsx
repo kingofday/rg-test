@@ -25,18 +25,17 @@ const EntryForm = ({
   const { t } = useTranslation();
   const { user } = useContext(SharedContext);
   const initialValues = useMemo(() => {
-    if (data) return data;
-    return {
-      sourceLocation: {
-        countyId: user?.countyId,
-        districtId: user?.districtId,
-        cityId: user?.cityId,
-        ruralDistrictId: user?.ruralDistrictId,
-        villageId: user?.villageId,
-      },
-    };
+    if (!data)
+      return {
+        sourceLocation: {
+          countyId: user?.countyId,
+          districtId: user?.districtId,
+          cityId: user?.cityId,
+          ruralDistrictId: user?.ruralDistrictId,
+          villageId: user?.villageId,
+        },
+      };
   }, []);
-  console.log("initialValues",data,initialValues)
   return (
     <StepperForm<TPondWaterSummary>
       frmName="pond-water-form"
