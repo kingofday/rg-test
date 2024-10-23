@@ -80,7 +80,7 @@ const ExtractAndTransfer = ({ readOnly }: IStepContent) => {
         >
           <Select
             allowClear
-            placeholder={t("pondDedicateType")}
+            placeholder={t("dedicateType")}
             options={utils.convrtEnumToOptions(PondDedicateTypeEnum)}
             disabled={readOnly}
           />

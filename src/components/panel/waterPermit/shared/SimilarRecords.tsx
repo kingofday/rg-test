@@ -9,7 +9,10 @@ import { TSimilarRecords } from "models/waterPermitSimilars";
 import { useTranslation } from "react-i18next";
 const SimilarRecords = ({ data }: { data: any }) => {
   const [_, loading, records] = useApi<TSimilarRecords>({
-    autoCallUrl: addreses.waterPermit.similarRecords(data.waterUserProfile),
+    autoCallUrl: addreses.waterPermit.similarRecords({
+      id: data.id,
+      ...data.waterUserProfile,
+    }),
   });
   const { t } = useTranslation();
   const surfaceColumns = useSurfaceWaterColumns();

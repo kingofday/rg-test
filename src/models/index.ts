@@ -10,14 +10,14 @@ export type TUser = {
   fullName: string;
   nationalCode: string;
   phoneNumber: string;
-  personnelId?:string,
-  baseSalary?:string,
-  emailAddress?:string,
-  countyId?:string,
-  districtId?:string,
-  cityId?:string,
-  ruralDistrictId?:string,
-  villageId?:string,
+  personnelId?: string;
+  baseSalary?: string;
+  emailAddress?: string;
+  countyId?: number;
+  districtId?: number;
+  cityId?: number;
+  ruralDistrictId?: number;
+  villageId?: number;
 };
 export enum MenuTypes {
   //[Display(Name = "مدیریت تنظیمات")]
@@ -33,7 +33,7 @@ export enum MenuTypes {
   SurfaceWaterPermitManager = "SurfaceWaterPermitManager",
   SpringPermitManager = "SpringPermitManager",
   WellPermitManager = "WellPermitManager",
-  DeveloperSupport = "DeveloperSupport"
+  DeveloperSupport = "DeveloperSupport",
 }
 export type TMenu = ItemType & {
   path?: string;

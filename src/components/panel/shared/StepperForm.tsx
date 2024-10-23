@@ -75,7 +75,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
       key={props.frmName}
       form={entryFrm}
       layout="vertical"
-      initialValues={(props.data as any)??props.initialValues}
+      initialValues={(props.data as any) ?? props.initialValues}
       onFinish={handleSubmit}
       onFinishFailed={handleFailed}
       autoComplete="off"
@@ -135,7 +135,7 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
               >
                 <Row gutter={10}>
                   <x.content
-                    data={props.data}
+                    data={addResponse ?? props.data}
                     entryFrm={entryFrm}
                     readOnly={props.readOnly}
                     initialValues={props.initialValues}
@@ -159,6 +159,12 @@ const StepperForm = <T,>(props: IStepperForm<T>) => {
                 case props.steps.length - 1:
                   return (
                     <>
+                      <Button
+                        loading={props.data ? finding : false}
+                        onClick={back}
+                      >
+                        {t("prev")}
+                      </Button>
                       {props.readOnly ? (
                         <Button
                           loading={props.data ? finding : false}
