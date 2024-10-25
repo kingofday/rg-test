@@ -1,13 +1,21 @@
 import { Form as AntForm, Col, Select } from "antd";
 import useLocation from "hooks/useLocation";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 interface IAddressInputProps {
   entryFrm: any;
   namePrefix?: string;
   data: any;
-  readOnly?:boolean
+  readOnly?: boolean;
+  hideIfCityIdSelected?: boolean;
 }
-const AddressInput = ({ entryFrm, data, namePrefix, readOnly }: IAddressInputProps) => {
+const AddressInput = ({
+  entryFrm,
+  data,
+  namePrefix,
+  readOnly,
+  hideIfCityIdSelected,
+}: IAddressInputProps) => {
   const { t } = useTranslation();
   const {
     loadingCounties,
@@ -26,8 +34,9 @@ const AddressInput = ({ entryFrm, data, namePrefix, readOnly }: IAddressInputPro
   } = useLocation({
     entryFrm,
     location: data,
-    namePrefix
+    namePrefix,
   });
+  const [cityId, setCityId] = useState<number | undefined | null>(data?.cityId);
   return (
     <>
       <Col xs={12} sm={8} md={6}>
@@ -91,6 +100,7 @@ const AddressInput = ({ entryFrm, data, namePrefix, readOnly }: IAddressInputPro
             placeholder={t("city")}
             loading={loadingCities}
             disabled={readOnly}
+            onChange={setCityId}
             options={[
               {
                 label: t("selcet"),
@@ -104,57 +114,61 @@ const AddressInput = ({ entryFrm, data, namePrefix, readOnly }: IAddressInputPro
           />
         </AntForm.Item>
       </Col>
-      <Col xs={12} sm={8} md={6}>
-        <AntForm.Item
-          name={
-            namePrefix ? [namePrefix, "ruralDistrictId"] : "ruralDistrictId"
-          }
-          label={t("rural")}
-        >
-          <Select
-            allowClear
-            showSearch
-            placeholder={t("rural")}
-            loading={loadingRuralDistricts}
-            onChange={onRuralDistrictsChanged}
-            disabled={readOnly}
-            options={[
-              {
-                label: t("selcet"),
-                value: "",
-              },
-              ...(ruralDistricts?.map((x) => ({
-                label: x.name,
-                value: x.id,
-              })) ?? []),
-            ]}
-          />
-        </AntForm.Item>
-      </Col>
-      <Col xs={12} sm={8} md={6}>
-        <AntForm.Item
-          name={namePrefix ? [namePrefix, "villageId"] : "villageId"}
-          label={t("village")}
-        >
-          <Select
-            allowClear
-            showSearch
-            placeholder={t("village")}
-            loading={loadingVillages}
-            disabled={readOnly}
-            options={[
-              {
-                label: t("selcet"),
-                value: "",
-              },
-              ...(villages?.map((x) => ({
-                label: x.name,
-                value: x.id,
-              })) ?? []),
-            ]}
-          />
-        </AntForm.Item>
-      </Col>
+      {cityId && hideIfCityIdSelected ? null : (
+        <>
+          <Col xs={12} sm={8} md={6}>
+            <AntForm.Item
+              name={
+                namePrefix ? [namePrefix, "ruralDistrictId"] : "ruralDistrictId"
+              }
+              label={t("rural")}
+            >
+              <Select
+                allowClear
+                showSearch
+                placeholder={t("rural")}
+                loading={loadingRuralDistricts}
+                onChange={onRuralDistrictsChanged}
+                disabled={readOnly}
+                options={[
+                  {
+                    label: t("selcet"),
+                    value: "",
+                  },
+                  ...(ruralDistricts?.map((x) => ({
+                    label: x.name,
+                    value: x.id,
+                  })) ?? []),
+                ]}
+              />
+            </AntForm.Item>
+          </Col>
+          <Col xs={12} sm={8} md={6}>
+            <AntForm.Item
+              name={namePrefix ? [namePrefix, "villageId"] : "villageId"}
+              label={t("village")}
+            >
+              <Select
+                allowClear
+                showSearch
+                placeholder={t("village")}
+                loading={loadingVillages}
+                disabled={readOnly}
+                options={[
+                  {
+                    label: t("selcet"),
+                    value: "",
+                  },
+                  ...(villages?.map((x) => ({
+                    label: x.name,
+                    value: x.id,
+                  })) ?? []),
+                ]}
+              />
+            </AntForm.Item>
+          </Col>
+        </>
+      )}
     </>
   );
 };

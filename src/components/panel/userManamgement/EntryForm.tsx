@@ -262,7 +262,7 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
             />
           </AntForm.Item>
         </Col>
-        <AddressInput data={data} entryFrm={entryFrm} />
+        <AddressInput hideIfCityIdSelected data={data} entryFrm={entryFrm} />
       </Row>
     </>
   );
