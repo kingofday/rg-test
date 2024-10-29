@@ -39,6 +39,7 @@ const EditAction = (props: IEditAction) => {
         props.isMobile?undefined:<CustomIcon size={props.isMobile ? 20 : 10} name="IoPencilOutline" />
       }
       onClick={onClick}
+      title={t("edit")??""}
     >
       {props.isMobile ? t("edit") : null}
     </Button>

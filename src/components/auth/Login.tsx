@@ -35,9 +35,6 @@ const Login = () => {
       const phoneClaim = res?.claims.find(
         (x) => x.type === ClaimTypes.PhoneNumber
       )!;
-      const personnelId = res?.claims.find(
-        (x) => x.type === ClaimTypes.PersonnelId
-      );
       const countyId = res?.claims.find((x) => x.type === ClaimTypes.CountyId);
       const districtId = res?.claims.find(
         (x) => x.type === ClaimTypes.DistrictId
@@ -55,7 +52,6 @@ const Login = () => {
         fullName: fullNameClaim.value,
         nationalCode: ncClaim.value,
         phoneNumber: phoneClaim.value,
-        personnelId: personnelId?.value,
         countyId: countyId?.value ? parseInt(countyId?.value) : undefined,
         districtId: districtId?.value ? parseInt(districtId?.value) : undefined,
         ruralDistrictId: ruralDistrictId?.value

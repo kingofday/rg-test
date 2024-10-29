@@ -158,13 +158,11 @@ const User = () => {
                 <Button
                   type={isMobile ? "ghost" : "primary"}
                   shape={isMobile ? "default" : "circle"}
-                  title={t("resetPasswrod") ?? ""}
+                  title={t("resetPassword") ?? ""}
                   icon={
-                    isMobile ? undefined : <CustomIcon name={"MdOutlineLockReset"} />
+                    isMobile ? undefined : <CustomIcon name={"MdLockReset"} />
                   }
-                  onClick={() =>
-                    selectUserToResetPW(record)
-                  }
+                  onClick={() => selectUserToResetPW(record)}
                 >
                   {isMobile ? t("resetPassword") : null}
                 </Button>
@@ -173,14 +171,11 @@ const User = () => {
           },
         ]}
         entryModalWidth={1000}
+        initialValues={{ isEnabled: true }}
       >
-        <Row gutter={[20, 20]}>
-          <Col xs={24} sm={12}>
-            <Form.Item name="search" rules={[]}>
-              <Input placeholder={t("search") ?? ""} />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Form.Item name="search" rules={[]}>
+          <Input style={{ width: 250 }} placeholder={t("search") ?? ""} />
+        </Form.Item>
       </AdminPage>
       <ConfirmModal
         open={!!userToChange}

@@ -108,7 +108,6 @@ const AdminPage = <DataType extends Object>({
 }: AdminPageProps<DataType>) => {
   const { t } = useTranslation();
   const [filterFrm] = Form.useForm();
-
   const [modal, toggleModal] = useState(false);
   const [collapsed, toggleCollapsed] = useState(true);
   const [selected, select] = useState<DataType | null>(null);
@@ -129,7 +128,7 @@ const AdminPage = <DataType extends Object>({
   });
   const [add, adding] = useApi<any>({
     onSuccess: (newItem, params) => {
-      onAddSuccess(params?{ ...params, ...newItem }:newItem);
+      onAddSuccess(params ? { ...params, ...newItem } : newItem);
     },
   });
   const [del, deleting] = useApi<boolean>({
@@ -394,6 +393,19 @@ const AdminPage = <DataType extends Object>({
   return (
     <AdminPageContext.Provider value={{ form: filterFrm }}>
       <Page id={id} title={title} className="admin">
+        {!isMobile && !!addUrl && (
+          <div>
+            <Button
+              icon={<CustomIcon name="IoAdd" />}
+              onClick={onAdd}
+              type="primary"
+              size="small"
+              title={t("add") ?? ""}
+            >
+              <small>{t("add")}</small>
+            </Button>
+          </div>
+        )}
         <Collapse
           defaultActiveKey={["filters"]}
           onChange={() => toggleCollapsed((s) => !s)}
@@ -404,7 +416,7 @@ const AdminPage = <DataType extends Object>({
             header={t("filters")}
             key="filters"
             extra={
-              !addUrl ? null : (
+              !addUrl || !isMobile ? null : (
                 <Button
                   icon={<CustomIcon name="IoAdd" />}
                   onClick={onAdd}
@@ -424,23 +436,25 @@ const AdminPage = <DataType extends Object>({
               onFinish={onFilter}
               autoComplete="off"
             >
-              {children}
-              <Form.Item className="flex-row-end btns">
-                {buttons?.map((x) => (
-                  <Button
-                    type={"primary" ?? x.type}
-                    htmlType="button"
-                    style={x.style}
-                    className={x.className}
-                    onClick={(e) => x.onClick(e, filterFrm.getFieldsValue())}
-                  >
-                    {x.children}
+              <Space direction="horizontal">
+                {children}
+                <Form.Item className="flex-row-end btns">
+                  {buttons?.map((x) => (
+                    <Button
+                      type={"primary"}
+                      htmlType="button"
+                      style={x.style}
+                      className={x.className}
+                      onClick={(e) => x.onClick(e, filterFrm.getFieldsValue())}
+                    >
+                      {x.children}
+                    </Button>
+                  ))}
+                  <Button type="primary" htmlType="submit">
+                    {t("search")}
                   </Button>
-                ))}
-                <Button type="primary" htmlType="submit">
-                  {t("filter")}
-                </Button>
-              </Form.Item>
+                </Form.Item>
+              </Space>
             </Form>
           </Panel>
         </Collapse>
@@ -477,7 +491,7 @@ const AdminPage = <DataType extends Object>({
                 onEntrySubmit={onEntrySubmit}
                 entryModalWidth={entryModalWidth}
                 title={selected ? t("edit") : t("add")}
-                initialValues={selected ?? undefined}
+                initialValues={selected ?? initialValues ?? undefined}
                 loading={adding || editing}
               />
             ) : null

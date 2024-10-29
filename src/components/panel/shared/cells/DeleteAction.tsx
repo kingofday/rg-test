@@ -17,6 +17,7 @@ const DeleteAction = (props: IEditAction) => {
         props.isMobile?undefined:<CustomIcon size={props.isMobile ? 20 : 10} name="IoTrashOutline" />
       }
       onClick={props.onClick}
+      title={t("delete")??""}
     >
       {props.isMobile ? t("delete") : null}
     </Button>

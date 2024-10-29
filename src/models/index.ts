@@ -10,8 +10,6 @@ export type TUser = {
   fullName: string;
   nationalCode: string;
   phoneNumber: string;
-  personnelId?: string;
-  baseSalary?: string;
   emailAddress?: string;
   countyId?: number;
   districtId?: number;

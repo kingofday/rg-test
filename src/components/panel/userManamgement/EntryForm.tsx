@@ -1,4 +1,12 @@
-import { Form as AntForm, Checkbox, Col, Input, Row, Select } from "antd";
+import {
+  Form as AntForm,
+  Checkbox,
+  Col,
+  Divider,
+  Input,
+  Row,
+  Select,
+} from "antd";
 import PriceInput from "components/shared/PriceInput";
 import addreses from "config/api/addresses";
 import patterns from "config/patterns";
@@ -97,7 +105,7 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
         </Col>
         <Col xs={12} sm={8} md={6}>
           <AntForm.Item valuePropName="checked" name="isEnabled" label={" "}>
-            <Checkbox>{t("isEnabled")}</Checkbox>
+            <Checkbox defaultChecked={true}>{t("isEnabled")}</Checkbox>
           </AntForm.Item>
         </Col>
         {!data && (
@@ -148,27 +156,6 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
         )}
         <Col xs={12} sm={8} md={6}>
           <AntForm.Item
-            name="personnelId"
-            label={t("personnelId")}
-            rules={[
-              {
-                required: true,
-                message: t("required") ?? "",
-              },
-              {
-                pattern: patterns.personelId,
-                message: t("wrongFormat") ?? "",
-              },
-            ]}
-          >
-            <Input
-              placeholder={t("personnelId") ?? ""}
-              className="ltr-elm placeholder-r"
-            />
-          </AntForm.Item>
-        </Col>
-        <Col xs={12} sm={8} md={6}>
-          <AntForm.Item
             name="phoneNumber"
             label={t("mobileNumber")}
             rules={[
@@ -189,14 +176,6 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
           </AntForm.Item>
         </Col>
         <Col xs={12} sm={8} md={6}>
-          <PriceInput
-            stringMode={false}
-            name="baseSalary"
-            label={t("baseSalary") ?? ""}
-            placeholder={t("baseSalary") ?? ""}
-          />
-        </Col>
-        <Col xs={12} sm={8} md={6}>
           <AntForm.Item
             name="emailAddress"
             label={t("email")}
@@ -213,7 +192,7 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
             />
           </AntForm.Item>
         </Col>
-        <Col xs={24} sm={8} md={6}>
+        <Col xs={24} sm={12} md={12}>
           <AntForm.Item
             name="organizationLevelId"
             label={t("organizationLevel")}
@@ -235,7 +214,7 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
             />
           </AntForm.Item>
         </Col>
-        <Col xs={12} sm={8} md={6}>
+        <Col xs={12} sm={12} md={12}>
           <AntForm.Item
             name="roleIds"
             label={t("roles")}
@@ -261,6 +240,9 @@ const EntryForm = ({ data, form: entryFrm }: IEntryForm) => {
               }))}
             />
           </AntForm.Item>
+        </Col>
+        <Col xs={24} sm={24} md={24}>
+          <Divider orientation="left">{t("geographicaLocation")}</Divider>
         </Col>
         <AddressInput hideIfCityIdSelected data={data} entryFrm={entryFrm} />
       </Row>

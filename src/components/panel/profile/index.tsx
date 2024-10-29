@@ -73,12 +73,6 @@ const Profile = () => {
                     <strong>{user?.emailAddress ?? "-"}</strong>
                   </Space>
                 </Col>
-                <Col xs={24} sm={12}>
-                  <Space direction="horizontal">
-                    <span>{t("personnelId")}:</span>
-                    <strong>{user?.personnelId ?? "-"}</strong>
-                  </Space>
-                </Col>
               </Row>
             ),
           },
