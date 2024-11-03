@@ -5,6 +5,7 @@ interface IEntryForm<T> {
   title: string;
   entryModalWidth?: number;
   initialValues?: any;
+  data?:any;
   loading?: boolean;
   EntryForm: ElementType;
   onEntrySubmit?: (values: T) => void;
@@ -28,11 +29,11 @@ const EntryFormModal = <T,>(props: IEntryForm<T>) => {
         id="entry-form"
         layout="vertical"
         form={entryFrm}
-        initialValues={props.initialValues}
+        initialValues={props.data||props.initialValues}
         onFinish={props.onEntrySubmit}
         autoComplete="off"
       >
-        <props.EntryForm form={entryFrm} data={props.initialValues} />
+        <props.EntryForm form={entryFrm} initialValues={props.initialValues} data={props.data} />
       </Form>
     </Modal>
   );

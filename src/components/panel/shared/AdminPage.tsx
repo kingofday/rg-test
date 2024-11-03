@@ -491,7 +491,8 @@ const AdminPage = <DataType extends Object>({
                 onEntrySubmit={onEntrySubmit}
                 entryModalWidth={entryModalWidth}
                 title={selected ? t("edit") : t("add")}
-                initialValues={selected ?? initialValues ?? undefined}
+                data={selected ?? undefined}
+                initialValues={initialValues ?? undefined}
                 loading={adding || editing}
               />
             ) : null

@@ -53,7 +53,7 @@ const SpringWater = () => {
         <Row gutter={[20, 20]}>
           <Col xs={24} sm={12}>
             <Form.Item name="search" rules={[]}>
-              <Input placeholder={t("search") ?? ""} />
+              <Input style={{ width: 250 }} placeholder={t("search") ?? ""} />
             </Form.Item>
           </Col>
         </Row>
